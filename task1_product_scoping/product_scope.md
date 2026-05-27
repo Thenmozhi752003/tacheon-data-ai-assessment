@@ -47,11 +47,15 @@ BigQuery Database
         ↓
 Power BI Dashboard
 
-# API Integration - The system will connect to platforms like Google Ads and Meta Ads through APIs to fetch campaign data automatically.
+# API Integration 
+The system will connect to platforms like Google Ads and Meta Ads through APIs to fetch campaign data automatically.
                                 (or)
-# CSV Upload Support - For platforms without API integration support, users can upload CSV files manually. The system will process the uploaded data and include it in the dashboard.
-# Data Pipeline - Python scripts will collect, clean, and transform the data before storing it in BigQuery.
-# Dashboard Layer - Power BI will be used to create interactive dashboards for KPI tracking, channel comparison, ROI analysis, and trend monitoring.
+# CSV Upload Support 
+For platforms without API integration support, users can upload CSV files manually. The system will process the uploaded data and include it in the dashboard.
+# Data Pipeline 
+Python scripts will collect, clean, and transform the data before storing it in BigQuery.
+# Dashboard Layer 
+Power BI will be used to create interactive dashboards for KPI tracking, channel comparison, ROI analysis, and trend monitoring.
 
 ## Features Included in Version 1 Scope
 - Campaign performance dashboard
