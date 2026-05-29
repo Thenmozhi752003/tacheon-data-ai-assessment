@@ -1,15 +1,25 @@
 import requests
 import pandas as pd
 from google.cloud import bigquery
+import logging
 
-# API URL
-url = "https://api.open-meteo.com/v1/forecast?latitude=13.0827&longitude=80.2707&current_weather=true"
+# Logging setup
+logging.basicConfig(level=logging.INFO)
+
+# API configuration
+BASE_URL = "https://api.open-meteo.com/v1/forecast"
+
+params = {
+    "latitude": 13.0827,
+    "longitude": 80.2707,
+    "current_weather": "true"
+}
 
 try:
-    print("Fetching weather data...")
+    logging.info("Fetching weather data...")
 
     # API request
-    response = requests.get(url)
+    response = requests.get(BASE_URL, params=params)
 
     # Check API response
     response.raise_for_status()
@@ -17,10 +27,10 @@ try:
     # Convert response to JSON
     data = response.json()
 
-    # Extract current weather
+    # Extract current weather data
     weather = data["current_weather"]
 
-    # Create dataframe
+    # Create DataFrame
     df = pd.DataFrame([weather])
 
     # Derived field
@@ -29,7 +39,7 @@ try:
     # Handle null values
     df.fillna(0, inplace=True)
 
-    print("Transformed Data:")
+    logging.info("Transformed Data:")
     print(df)
 
     # BigQuery upload
@@ -41,7 +51,7 @@ try:
 
     job.result()
 
-    print("Data uploaded to BigQuery successfully")
+    logging.info("Data uploaded to BigQuery successfully")
 
 except Exception as e:
-    print("Error occurred:", e)
+    logging.error(f"Error occurred: {e}")
